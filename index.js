@@ -28,9 +28,9 @@ app.use('/graphql', graphqlHTTP(
   )
 );
 
-app.get('/yo',(req, res) => {
+app.get('/',(req, res) => {
   res.send('HELLO WORLD!!!!!!!!!!!!!!! this is a demo server');
 });
 
 app.listen(8080);
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+console.log('Running a GraphQL API server at port:8080');
