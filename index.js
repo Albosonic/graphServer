@@ -19,11 +19,18 @@ var root = {
 };
 
 var app = express();
-app.use('/graphql', graphqlHTTP((req, res, graphQlParams) => {
-  documentHelpers.fetchDocumentHistory(req.headers.cookie, documentHistory => root['documentHistory'] = () => documentHistory);
-  return ({ schema: schema, rootValue: root, graphiql: true })
-}
-));
 
-app.listen(4000);
+app.use('/graphql', graphqlHTTP(
+  (req, res, graphQlParams) => {
+      documentHelpers.fetchDocumentHistory(req.headers.cookie, documentHistory => root['documentHistory'] = () => documentHistory);
+      return ({ schema: schema, rootValue: root, graphiql: true })
+    }
+  )
+);
+
+app.get('/yo',(req, res) => {
+  res.send('HELLO WORLD!!!!!!!!!!!!!!! this is a demo server');
+});
+
+app.listen(8080);
 console.log('Running a GraphQL API server at localhost:4000/graphql');
